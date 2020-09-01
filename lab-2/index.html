@@ -13,10 +13,14 @@
 		<h3>Name {{person.name}}</h3>
 		<h3>E-mail {{person.email}}</h3>
 		<h3>Website {{person.website}}</h3>
-		<h3>Company {{person.company}}</h3>
-
+		<h3>Company {{person.company.name}}</h3>
+		<button @click="isthisgood">เขาเป็นสมาชิกกลุ่มที่ดีหรือไม่</button>
+		<h2>{{yesno.answer}}</h2>
+		<img src="yesno.image" alt="">
 		Users
-		<h2 v-for="u in users">{{u.username}}</h2>
+		<h2 v-for="u in users" :data-id="u.id" @click="viewBio(u)">
+			<img :src="`https://picsum.photos/id/3${u.id}/300/300`" alt="">
+			{{u.username}}</h2>
 	</div>
 
 
@@ -30,20 +34,51 @@
 		})
 		let app = new Vue({
 			el: '#app',
-			data: {
-				users :[],
-				person:{
-					id:0,
-					name:'..loading',
-					username:'..loading',
-					email:'..loading',
-					website:'..loading',
-					company:{
-						name : '..loading',
-					}
-				}
-			}
+			methods:{
+				viewBio: function(user){
+					this.person = user
+					this.yesno = {"answer":"อยากรู้ คลิ๊กเลย","forced":false,"image":""}
+				},
+				isthisgood: function(){
+					fetch('https://yesno.wtf/api')
+					.then(response => response.json())
+					.then(json => {
+						console.log(json)
+						app.yesno = json
 		})
+				}
+			},
+			data: {
+				yesno:{"answer":"อยากรู้ คลิ๊กเลย","forced":false,"image":""},
+				person:{
+					"id":0,
+					"name":'..loading',
+					"username":'..loading',
+					"email":'..loading',
+					"website":'..loading',
+					"company":{
+						"name" : '..loading',
+					}
+				},
+				users :[{
+					"id":0,
+					"name":'..loading',
+					"username":'..loading',
+					"email":'..loading',
+					"website":'..loading',
+					"company":{
+						"name" : '..loading',
+					}
+				}]
+			}
+
+		})
+
+		//function viewBio(h2){
+		//	let id = h2.dataset.id;
+		//	app.person = app.users[id-1]
+		//	console.log(id)
+		//}
 
 	</script>
 </body>

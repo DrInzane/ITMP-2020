@@ -65,6 +65,9 @@ div.box{
 #endgame{
 	background-color: #333;
 }
+.box._origin{
+	background-color: black;
+}
 .box._toggle[data-isrightarrow="1"]{
 	background-image: url('arrow.png');
 	background-size: 100%;
@@ -80,7 +83,7 @@ div.box{
 .box._12{
 	background-color: red;
 }
-.box._16{
+.box._14{
 	background-color: yellow;
 }
 .box._path{
@@ -162,7 +165,7 @@ div.box{
 	right:20%;
 	bottom:40%;
 }
-.box[data-pst="16"]{
+.box[data-pst="14"]{
 	right:0%;
 	bottom:40%;
 }

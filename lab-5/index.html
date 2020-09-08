@@ -98,13 +98,27 @@
 								this.play = false;
 							}
 						}
+						if(this.fruits[f].pst==12||this.fruits[f].pst==14){
+							this.fruits[f].run=false;
+						}
+
 						let run = this.fruits[f].run
 						if(run){
 							this.fruits[f].pst += this.fruits[f].step
 						}
 						console.log()
 					}
+					let spawn = rand(0,2)
+					if(spawn==0){
+						this.fruits.push({id:fruitCount,type:11,pst:1,run:true,step:1})
+
+					}
+					else if(spawn==1){
+						this.fruits.push({id:fruitCount,type:13,pst:1,run:true,step:1})
+					}
+					fruitCount++;
 				}
+
 			},
 
 		})

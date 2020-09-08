@@ -34,7 +34,7 @@
 				Toggle
 			</div>
 			<div v-if="!play" class="btn" id="endgame">
-				Ene Game
+				End Game
 			</div>
 		</section>
 	</div>
@@ -122,9 +122,15 @@
 			},
 
 		})
-		let playing = setInterval(function(){
-			app.turn++
-		},app.speed)
+		let playing  =setInterval(function(){
+            app.turn++
+            if(app.play){
+                app.turn++
+            }
+            else{
+                clearInterval(playing)
+            }
+        },app.speed)
 	</script>
 </body>
 </html>

@@ -57,9 +57,9 @@
 				score:0,
 				fruits:[
 					{id:1,type:13,pst:2,run:true,step:1},
-					//type 13 is purple
+					//type 13 is yellow
 					{id:2,type:11,pst:1,run:true,step:1},
-					//type 11 is blue
+					//type 11 is red
 				]
 			},
 			methods:{
@@ -84,8 +84,19 @@
 							}else{
 								this.fruits[f].step=1
 							}
+
 						}else{
 							this.fruits[f].step=1
+						}
+						//นับคะแนน
+						if(this.fruits[f].pst == 11 || this.fruits[f].pst == 13){
+							if (this.fruits[f].pst == this.fruits[f].type && this.fruits[f].run) {
+								this.score++;
+							}
+
+							else if(this.fruits[f].pst != this.fruits[f].type && this.fruits[f].run){
+								this.play = false;
+							}
 						}
 						let run = this.fruits[f].run
 						if(run){

@@ -19,9 +19,9 @@
 				<div class="box _path"
 				v-for="i in 14"
 				:data-pst="i"></div>
-				<div class="box _toggle" data-pst="10" data-isrightarrow="1"></div>
+				<div class="box _toggle" :data-pst="10" :data-isrightarrow="isRightArrow"></div>
 
-				<div class="box _fruit" v-for="f in fruits" :data-pst="f.pst"></div>
+				<div class="box _fruit" v-for="f in fruits" :data-pst="f.pst" :data-type="f.type"></div>
 
 				<div class="box _origin"></div>
 				<div class="box _12" data-pst="12"></div>
@@ -30,7 +30,7 @@
 			</main>
 		</section>
 		<section id="canvas_footer">
-			<div v-if="play" class="btn" id="toggle">
+			<div v-if="play" class="btn" id="toggle"@click="swap()">
 				Toggle
 			</div>
 			<div v-if="!play" class="btn" id="endgame">
@@ -47,21 +47,29 @@
 
 		let fruitCount = 3
 		let isRightArrow = 1
-		let speed = 1000
 		let app = new Vue({
 			el:'#canvas',
 			data:{
 				isRightArrow: isRightArrow,
-                speed: speed,
+                speed: 1000,
 				play:true,
 				turn:0,
 				score:0,
 				fruits:[
-					{id:1,type:11,pst:4,run:true,step:1},
-					{id:2,type:13,pst:3,run:true,step:1},
+					{id:1,type:13,pst:2,run:true,step:1},
+					//type 13 is purple
+					{id:2,type:11,pst:1,run:true,step:1},
+					//type 11 is blue
 				]
 			},
 			methods:{
+				swap: function(){
+					if(this.isRightArrow==1){
+						this.isRightArrow=0
+					}else{
+						this.isRightArrow=1
+					}
+				},
 
 			},
 			computed:{
@@ -82,7 +90,7 @@
 		})
 		let playing = setInterval(function(){
 			app.turn++
-		},speed)
+		},app.speed)
 	</script>
 </body>
 </html>
